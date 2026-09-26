@@ -1,6 +1,9 @@
 .wrapper {
    min-height: 100vh;
    width: 100%;
+   background-color: #f1f4f9;
+   display: flex;
+   flex-direction: column;
 }
 
 .container {
@@ -8,8 +11,6 @@
    width: 100%;
    margin: 0 auto;
    padding: 0 30px;
-   display: flex;
-   flex-direction: column;
 }
 
 .visual-test {

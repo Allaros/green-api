@@ -1,16 +1,15 @@
-import { BrowserRouter, Navigate, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import ChatsPage from './pages/Chats';
-import LoginPage from './pages/LoginPage';
+import ChatsPage from './pages/ChatsPage/ChatsPage';
+import LoginPage from './pages/LoginPage/LoginPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 function App() {
    return (
-      <div className="wrapper ">
-         <div className="container">
-            <BrowserRouter>
+      <div className="wrapper">
+         <BrowserRouter>
+            <Routes>
                <Route path="/login" element={<LoginPage />} />
-
                <Route
                   path="/chat"
                   element={
@@ -19,10 +18,9 @@ function App() {
                      </ProtectedRoute>
                   }
                />
-
-               <Route path="*" element={<Navigate to="/chat" replace />} />
-            </BrowserRouter>
-         </div>
+               <Route path="*" element={<LoginPage />} />
+            </Routes>
+         </BrowserRouter>
       </div>
    );
 }
