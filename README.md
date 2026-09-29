@@ -24,8 +24,8 @@
 1. Клонируйте репозиторий и перейдите в папку проекта:
 
    ```bash
-   git clone <URL-репозитория>
-   cd telegram-chat-clone
+   git clone https://github.com/Allaros/green-api.git
+   cd green-api
    ```
 
 2. Установите зависимости:
