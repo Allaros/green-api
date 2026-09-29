@@ -1,78 +1,72 @@
-# React + TypeScript + Vite
+# Telegram Chat Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-приложение на React и TypeScript, имитирующее интерфейс Telegram и использующее API [GREEN-API](https://green-api.com/) для работы с сообщениями.
 
-Currently, two official plugins are available:
+## Возможности
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Авторизация с помощью `idInstance` и `apiTokenInstance` GREEN-API.
+- Просмотр списка чатов и истории сообщений.
+- Отправка сообщений в выбранный чат.
+- Создание чата по номеру телефона.
+- Получение новых сообщений через уведомления GREEN-API.
+- Сохранение списка чатов в `localStorage`.
+- Сохранение данных авторизации в `sessionStorage`.
 
-## React Compiler
+## Требования
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Node.js версии, совместимой с установленной версией Vite.
+- npm.
+- Аккаунт GREEN-API с данными инстанса `idInstance` и `apiTokenInstance`.
+- Подключённый аккаунт Telegram.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Установка и запуск
 
-## Expanding the ESLint configuration
+1. Клонируйте репозиторий и перейдите в папку проекта:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+   ```bash
+   git clone <URL-репозитория>
+   cd telegram-chat-clone
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. Установите зависимости:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+   ```bash
+   npm install
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+3. Запустите приложение в режиме разработки:
 
+   ```bash
+   npm run dev
+   ```
+
+4. Откройте адрес, указанный в терминале. По умолчанию Vite использует `http://localhost:5173`.
+
+5. На странице входа введите `idInstance` и `apiTokenInstance` из личного кабинета GREEN-API.
+
+## Доступные команды
+
+| Команда           | Описание                                |
+| ----------------- | --------------------------------------- |
+| `npm run dev`     | Запуск сервера разработки               |
+| `npm run build`   | Проверка TypeScript и production-сборка |
+| `npm run preview` | Локальный просмотр production-сборки    |
+| `npm run lint`    | Проверка кода с помощью ESLint          |
+
+## Production-сборка
+
+Для создания и локального просмотра production-сборки выполните:
+
+```bash
+npm run build
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Собранные файлы будут находиться в каталоге `dist/`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Примечания
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+- Данные авторизации хранятся в `sessionStorage` текущей вкладки браузера.
+- Список чатов хранится в `localStorage`.
+- При ошибках API или ограничениях частоты запросов список чатов и сообщения могут временно не загрузиться. Проверьте настройки и состояние инстанса в личном кабинете GREEN-API.
+- Не публикуйте `apiTokenInstance` и не передавайте его третьим лицам.
